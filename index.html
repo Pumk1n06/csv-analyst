@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSV Analyst</title>
+  <link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+
+  <header>
+    <h1>CSV <span>Analyst</span></h1>
+    <div class="model-badge">Ollama · local</div>
+  </header>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside>
+
+      <div class="section">
+        <div class="section-title">Data Source</div>
+
+        <!-- Upload zone -->
+        <div id="drop-zone" onclick="document.getElementById('file-input').click()">
+          <input type="file" id="file-input" accept=".csv"/>
+          <div class="dz-icon">📂</div>
+          <p>Drop a <strong>CSV file</strong> here<br/>or click to browse</p>
+        </div>
+
+        <!-- File chip (shown after upload) -->
+        <div id="file-chip">
+          <div class="chip">
+            <span class="chip-icon">✓</span>
+            <div style="flex:1">
+              <div class="chip-name" id="chip-filename">—</div>
+              <div class="chip-meta" id="chip-meta">—</div>
+            </div>
+            <button class="chip-reset" id="btn-reset" title="Remove file">✕</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="section" id="stats-section">
+        <div class="section-title">Overview</div>
+        <div class="stats-row">
+          <div class="stat">
+            <div class="stat-val" id="stat-rows">—</div>
+            <div class="stat-label">Rows</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val" id="stat-cols">—</div>
+            <div class="stat-label">Cols</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column list -->
+      <div id="cols-wrap"></div>
+
+      <!-- Suggestions -->
+      <div id="suggestions-wrap">
+        <div class="section-title">Try asking</div>
+        <div id="suggestions"></div>
+      </div>
+
+    </aside>
+
+    <!-- MAIN CHAT -->
+    <main>
+      <div id="chat">
+        <div id="empty-state">
+          <div class="empty-icon">📊</div>
+          <h2>No data loaded</h2>
+          <p>Upload a CSV file to start asking questions about your data.</p>
+        </div>
+      </div>
+
+      <div id="input-bar">
+        <textarea
+          id="query-input"
+          rows="1"
+          placeholder="Upload a CSV to start…"
+          disabled
+        ></textarea>
+        <button id="send-btn" disabled>↑</button>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
